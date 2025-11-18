@@ -1,5 +1,7 @@
 <?php
 
+use App\Livewire\HomePage;
+use App\Livewire\Counter;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/', HomePage::class);
+Route::get('/counter', Counter::class);
+    
 
-Route::get('/', function () {
-    return view('welcome');
-});
