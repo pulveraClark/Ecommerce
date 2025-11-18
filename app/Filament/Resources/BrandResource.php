@@ -58,7 +58,7 @@ class BrandResource extends Resource
 
                             FileUpload::make('image')
                                 ->image()
-                                ->directory('categories')
+                                ->directory('brands')
                                 ->maxSize(1024)
                                 ->nullable(),
 
