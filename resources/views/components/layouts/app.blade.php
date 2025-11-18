@@ -12,7 +12,7 @@
         @livewire('partials.navbar')
         <main>
         {{ $slot }}
-        </main> 
+        </main>     
         @livewire('partials.footer')
         @livewireScripts
     </body>
