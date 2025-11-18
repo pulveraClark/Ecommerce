@@ -128,70 +128,76 @@ class OrderResource extends Resource
                     ])->columns(2),
 
                     Section::make('Order Items')->schema([
-                        Repeater::make('items')
-                            ->relationship()
-                            ->schema([
-                                Select::make('product_id')
-                                    ->relationship('product', 'name')
-                                    ->required()
-                                    ->preload()
-                                    ->searchable()
-                                    ->distinct()
-                                    ->columnSpan(4)
-                                    ->reactive()
-                                    ->afterStateUpdated(function ($state, Set $set) {
-                                        $product = Product::find($state);
-                                        $set('unit_amount', $product?->price ?? 0);
-                                        $set('total_amount', $product?->price ?? 0);
-                                    })
-                                    ->disableOptionsWhenSelectedInSiblingRepeaterItems(),
+    Repeater::make('items')
+        ->relationship()
+        ->schema([
+            Select::make('product_id')
+                ->relationship('product', 'name')
+                ->required()
+                ->preload()
+                ->searchable()
+                ->distinct()
+                ->columnSpan(4)
+                ->reactive()
+                ->afterStateUpdated(function ($state, Set $set) {
+                    $product = Product::find($state);
+                    $set('unit_amount', $product?->price ?? 0);
+                    $set('total_amount', $product?->price ?? 0);
+                })
+                ->disableOptionsWhenSelectedInSiblingRepeaterItems(),
 
-                                TextInput::make('quantity')
-                                    ->numeric()
-                                    ->minValue(1)
-                                    ->required()
-                                    ->default(1)
-                                    ->columnSpan(2)
-                                    ->reactive()
-                                    ->afterStateUpdated(function ($state, Set $set, Get $get) {
-                                        $unitAmount = $get('unit_amount') ?? 0;
-                                        $set('total_amount', $unitAmount * $state);
+            TextInput::make('quantity')
+                ->numeric()
+                ->minValue(1)
+                ->required()
+                ->default(1)
+                ->columnSpan(2)
+                ->reactive()
+                ->afterStateUpdated(function ($state, Set $set, Get $get) {
+                    $unitAmount = $get('unit_amount') ?? 0;
+                    $set('total_amount', $unitAmount * $state);
 
-                                        // Update grand total hidden field
-                                        $items = $get('items') ?? [];
-                                        $grandTotal = 0;
-                                        foreach ($items as $item) {
-                                            $grandTotal += $item['total_amount'] ?? 0;
-                                        }
-                                        $set('grand_total', $grandTotal);
-                                    })
-                                    ->label('Quantity'),
+                    // Update grand total for all items
+                    $items = $get('items') ?? [];
+                    $grandTotal = collect($items)->sum(fn($i) => $i['total_amount'] ?? 0);
+                    $set('grand_total', $grandTotal);
+                })
+                ->label('Quantity'),
 
-                                TextInput::make('unit_amount')
-                                    ->numeric()
-                                    ->required()
-                                    ->disabled()
-                                    ->dehydrated()
-                                    ->columnSpan(3)
-                                    ->label('Unit Amount'),
+            TextInput::make('unit_amount')
+                ->numeric()
+                ->required()
+                ->disabled()
+                ->dehydrated()
+                ->columnSpan(3)
+                ->label('Unit Amount'),
 
-                                TextInput::make('total_amount')
-                                    ->numeric()
-                                    ->required()
-                                    ->disabled()
-                                    ->dehydrated()
-                                    ->columnSpan(3)
-                                    ->label('Total Amount'),
-                            ])->columns(12),
+            TextInput::make('total_amount')
+                ->numeric()
+                ->required()
+                ->disabled()
+                ->dehydrated()
+                ->columnSpan(3)
+                ->label('Total Amount'),
+        ])
+        ->columns(12)
+        ->reactive()
+        ->afterStateUpdated(function (Get $get, Set $set) {
+            // Recalculate grand total when items are added/removed
+            $items = $get('items') ?? [];
+            $grandTotal = collect($items)->sum(fn($i) => $i['total_amount'] ?? 0);
+            $set('grand_total', $grandTotal);
+        }),
 
-                        Placeholder::make('grand_total_placeholder')
-                            ->label('Grand Total')
-                            ->content(function (Get $get) {
-                                return '$' . number_format($get('grand_total') ?? 0, 2);
-                            }),
+    Placeholder::make('grand_total_placeholder')
+        ->label('Grand Total')
+        ->content(function (Get $get) {
+            return '$' . number_format($get('grand_total') ?? 0, 2);
+        }),
 
-                        Hidden::make('grand_total')->default(0),
-                    ])->columnSpan('full'),
+    Hidden::make('grand_total')->default(0),
+])->columnSpan('full'),
+
                 ]),
             ]);
     }
