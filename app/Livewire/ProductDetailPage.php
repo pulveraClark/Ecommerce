@@ -35,7 +35,7 @@ class ProductDetailPage extends Component
     $product = Product::where('slug', $this->slug)->firstOrFail();
 
     // Add to cart using product ID
-    $total_count = CartManagement::addItemToCart($product->id);
+    $total_count = CartManagement::addItemToCartWithQty($product->id, $this->quantity);
 
     // Update cart count
     $this->dispatch('update-cart-count', ['total_count' => $total_count]);
