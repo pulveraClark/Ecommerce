@@ -46,10 +46,13 @@ class LatestOrders extends BaseWidget
                     'pending' => 'warning',
                     'completed' => 'success',
                     'failed' => 'danger',
-                })->icon(fn ($state) => match ($state) {
+                    'paid' => 'success', // <- added
+                })
+                ->icon(fn ($state) => match ($state) {
                     'pending' => 'heroicon-o-clock',
                     'completed' => 'heroicon-o-check-circle',
                     'failed' => 'heroicon-o-x-circle',
+                    'paid' => 'heroicon-o-check-circle', // <- added
                 }),
                 TextColumn::make('created_at')->label('Order Date')->dateTime()->sortable(),
                 TextColumn::make('updated_at')->label('Last Updated')->dateTime()->sortable(),
