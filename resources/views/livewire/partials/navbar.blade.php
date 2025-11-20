@@ -59,7 +59,7 @@
             </button>
 
             <div class="hs-dropdown-menu absolute left-0 mt-2 opacity-0 hs-dropdown-open:opacity-100 transition md:w-48 z-10 bg-white shadow-md rounded-lg p-2 dark:bg-gray-800 dark:border dark:border-gray-700">
-              <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm hover:bg-gray-100 dark:hover:bg-gray-700" href="#">My Orders</a>
+              <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm hover:bg-gray-100 dark:hover:bg-gray-700"  wire:navigate href="/my-orders">My Orders</a>
               <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm hover:bg-gray-100 dark:hover:bg-gray-700" href="#">My Account</a>
               <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm hover:bg-gray-100 dark:hover:bg-gray-700" href="/logout">Logout</a>
             </div>
