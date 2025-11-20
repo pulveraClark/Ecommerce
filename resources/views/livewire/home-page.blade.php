@@ -218,7 +218,7 @@
   <div class="max-w-[85rem] px-4 sm:px-6 lg:px-8 mx-auto">
     <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
 
-      @foreach ($categories as $category) )
+      @foreach ($categories as $category)
         <a class="group flex flex-col bg-white border shadow-sm rounded-xl hover:shadow-md transition dark:bg-slate-900 dark:border-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="/products?selected_categories[0]={{ $category->id }}" wire:key="{{ $category->id }}">
         <div class="p-4 md:p-5">
           <div class="flex justify-between items-center">
@@ -240,15 +240,14 @@
       </a>
       @endforeach
       
-
-      
-        <p class="mb-12 text-base text-center text-gray-500">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus magni eius eaque?
-          Pariatur
-          numquam, odio quod nobis ipsum ex cupiditate?
-        </p>
-      </div>
     </div>
+    
+    <p class="mb-12 text-base text-center text-gray-500">
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus magni eius eaque?
+      Pariatur
+      numquam, odio quod nobis ipsum ex cupidita
+    </p>
+</div>
 
     <div class="grid grid-cols-1 gap-6 lg:grid-cols-2 ">
       <div class="py-6 bg-white rounded-md shadow dark:bg-gray-900">
