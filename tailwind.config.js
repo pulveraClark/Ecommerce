@@ -1,8 +1,9 @@
 import forms from '@tailwindcss/forms';
 
 export default {
-    darkMode: false, // <-- add this line to disable dark mode
+    
     content: [
+        
         "./resources/**/*.blade.php",
         "./resources/**/*.js",
         "./resources/**/*.vue",

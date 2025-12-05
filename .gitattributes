@@ -1,27 +1,20 @@
-<<<<<<< HEAD
 ###############################################################################
 # Set default behavior to automatically normalize line endings.
 ###############################################################################
-* text=auto
+* text=auto eol=lf
 
 ###############################################################################
 # Set default behavior for command prompt diff.
-#
-# This is need for earlier builds of msysgit that does not have it on by
-# default for csharp files.
-# Note: This is only used by command line
+# This is needed for earlier builds of msysgit that do not have it by
+# default for C# files. Only used by command line.
 ###############################################################################
 #*.cs     diff=csharp
 
 ###############################################################################
 # Set the merge driver for project and solution files
-#
 # Merging from the command prompt will add diff markers to the files if there
-# are conflicts (Merging from VS is not affected by the settings below, in VS
-# the diff markers are never inserted). Diff markers may cause the following 
-# file extensions to fail to load in VS. An alternative would be to treat
-# these files as binary and thus will always conflict and require user
-# intervention with every merge. To do so, just uncomment the entries below
+# are conflicts (Merging from VS is not affected). Diff markers may cause the
+# following file extensions to fail to load in VS. You can treat them as binary.
 ###############################################################################
 #*.sln       merge=binary
 #*.csproj    merge=binary
@@ -37,20 +30,16 @@
 #*.wwaproj   merge=binary
 
 ###############################################################################
-# behavior for image files
-#
-# image files are treated as binary by default.
+# Behavior for image files
+# Treated as binary by default.
 ###############################################################################
 #*.jpg   binary
 #*.png   binary
 #*.gif   binary
 
 ###############################################################################
-# diff behavior for common document formats
-# 
-# Convert binary document formats to text before diffing them. This feature
-# is only available from the command line. Turn it on by uncommenting the 
-# entries below.
+# Diff behavior for common document formats
+# Convert binary formats to text before diffing (command line only)
 ###############################################################################
 #*.doc   diff=astextplain
 #*.DOC   diff=astextplain
@@ -62,9 +51,10 @@
 #*.PDF   diff=astextplain
 #*.rtf   diff=astextplain
 #*.RTF   diff=astextplain
-=======
-* text=auto eol=lf
 
+###############################################################################
+# Laravel / Node / Web project specific rules
+###############################################################################
 *.blade.php diff=html
 *.css diff=css
 *.html diff=html
@@ -74,4 +64,3 @@
 /.github export-ignore
 CHANGELOG.md export-ignore
 .styleci.yml export-ignore
->>>>>>> f6cdc51 (Episode 1)

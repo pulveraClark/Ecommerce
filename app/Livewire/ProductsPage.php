@@ -17,6 +17,8 @@ class ProductsPage extends Component
 {
     use WithPagination;
 
+    #[Url]
+    public $search = '';
 
     #[Url]
     public $selected_categories = [];
@@ -36,6 +38,7 @@ class ProductsPage extends Component
     #[Url]
     public $sort = 'latest';
 
+    
     public function addToCart($product_id)
 {
     $total_count = CartManagement::addItemToCart($product_id);
@@ -53,35 +56,40 @@ class ProductsPage extends Component
 
     public function render()
     {
-        $productQuery = Product::query()->where('is_active', 1);
+       $productQuery = Product::query()->where('is_active', 1);
 
-        if (!empty($this->selected_categories)) {
-            $productQuery->whereIn('category_id', $this->selected_categories);
-        }
+if (!empty($this->search)) {
+    $productQuery->where('name', 'like', '%' . $this->search . '%');
+}
 
-        if (!empty($this->selected_brands)) {
-            $productQuery->whereIn('brand_id', $this->selected_brands);
-        }
+// existing filters...
+if (!empty($this->selected_categories)) {
+    $productQuery->whereIn('category_id', $this->selected_categories);
+}
 
-        if ($this->featured) {
-            $productQuery->where('is_featured', 1);
-        }
+if (!empty($this->selected_brands)) {
+    $productQuery->whereIn('brand_id', $this->selected_brands);
+}
 
-        if ($this->on_sale) {
-            $productQuery->where('on_sale', 1);
-        }
+if ($this->featured) {
+    $productQuery->where('is_featured', 1);
+}
 
-        if ($this->price_range) {
-            $productQuery->whereBetween('price', [0, $this->price_range]);
-        }
+if ($this->on_sale) {
+    $productQuery->where('on_sale', 1);
+}
 
-        if ($this->sort == 'latest') {
-            $productQuery->latest();
-        }
+if ($this->price_range) {
+    $productQuery->whereBetween('price', [0, $this->price_range]);
+}
 
-        if ($this->sort == 'price') {
-            $productQuery->orderBy('price');
-        }
+if ($this->sort == 'latest') {
+    $productQuery->latest();
+}
+
+if ($this->sort == 'price') {
+    $productQuery->orderBy('price');
+}
 
         return view('livewire.products-page', [
             'products' => $productQuery->paginate(9),

@@ -57,3 +57,6 @@ Route::middleware('auth')->group(function(){
     Route::get('/cancel', CancelPage::class)->name('cancel');
 });
 
+Route::get('/wishlist', \App\Livewire\WishlistPage::class)->name('wishlist');
+Route::get('/products', ProductsPage::class)->name('products.search');
+
