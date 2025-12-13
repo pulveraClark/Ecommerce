@@ -7,8 +7,7 @@
           <!-- Categories -->
           <div class="p-4 mb-5 bg-white border border-gray-200">
             <h2 class="text-2xl font-bold">Categories</h2>
-            <?php echo e(json_encode($selected_categories)); ?>
-
+            
             <div class="w-16 pb-2 mb-6 border-b border-rose-600"></div>
             <ul>
               <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>

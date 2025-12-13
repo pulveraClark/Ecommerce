@@ -18,6 +18,10 @@ use App\Livewire\SuccessPage;
 use App\Models\Product;
 use Filament\Support\Exceptions\Cancel;
 use Illuminate\Support\Facades\Route;
+use App\Livewire\ContactSupport;
+use App\Livewire\AboutUs;
+use App\Livewire\BlogPage;
+use App\Livewire\DealersPage;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,4 +63,7 @@ Route::middleware('auth')->group(function(){
 
 Route::get('/wishlist', \App\Livewire\WishlistPage::class)->name('wishlist');
 Route::get('/products', ProductsPage::class)->name('products.search');
-
+Route::get('/contact-support', ContactSupport::class)->name('contact-support');
+Route::get('/about-us', AboutUs::class)->name('about-us');
+Route::get('/blog', BlogPage::class)->name('blog');
+Route::get('/dealers', DealersPage::class)->name('dealers');

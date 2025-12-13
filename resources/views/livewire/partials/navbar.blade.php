@@ -4,7 +4,7 @@
       
       <!-- Brand & Mobile Toggle -->
       <div class="flex items-center justify-between">
-        <a class="flex-none text-xl font-semibold text-gray-900" href="/" aria-label="Brand">MotoFinder PH</a>
+        <a class="flex-none text-xl font-semibold text-gray-900" href="/" aria-label="Brand">MotoShop PH</a>
         <div class="md:hidden">
           <button type="button" class="hs-collapse-toggle flex justify-center items-center w-9 h-9 text-sm font-semibold rounded-lg border border-gray-200 text-gray-800 hover:bg-gray-100" data-hs-collapse="#navbar-collapse-with-animation" aria-controls="navbar-collapse-with-animation" aria-label="Toggle navigation">
             <svg class="hs-collapse-open:hidden flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -34,19 +34,7 @@
             <!-- Products -->
             <a class="font-medium py-3 md:py-6 {{ request()->is('products*') ? 'text-blue-600' : 'text-gray-500' }}" href="/products">Products</a>
 
-            <!-- Search Bar -->
-            <form action="{{ route('products.search') }}" method="GET" class="flex items-center w-full max-w-xs md:mx-4">
-              <input
-                type="text"
-                name="query"
-                value="{{ request('query') }}"
-                placeholder="Search products..."
-                class="flex-1 px-3 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-1 focus:ring-blue-500"
-              />
-              <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-r-md hover:bg-blue-600">
-                Search
-              </button>
-            </form>
+            
 
             <!-- Cart -->
             <a class="font-medium flex items-center py-3 md:py-6 {{ request()->is('cart*') ? 'text-blue-600' : 'text-gray-500' }}" href="/cart">

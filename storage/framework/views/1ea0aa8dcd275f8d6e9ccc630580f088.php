@@ -1,64 +1,68 @@
 
-<div>
-    <div class="w-full h-screen bg-gradient-to-r from-blue-200 to-cyan-200 py-10 px-4 sm:px-6 lg:px-8 mx-auto">
-        <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Grid -->
-            <div class="grid md:grid-cols-2 gap-4 md:gap-8 xl:gap-20 md:items-center">
-                <div>
-                    <h1 class="block text-3xl font-bold text-gray-800 sm:text-4xl lg:text-6xl lg:leading-tight dark:text-white">
-                        Discover and Shop the Best Motorcycles with <span class="text-blue-600">MotoShop PH</span>
-                    </h1>
-                    <p class="mt-3 text-lg text-gray-800 dark:text-gray-400">
-                        Explore our extensive catalog of motorcycles, accessories, and parts. Secure checkout, fast shipping, and expert reviews to help you find your perfect ride.
-                    </p>
+<div class="w-full min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col justify-center py-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+        <!-- Left Column: Hero Text -->
+        <div class="space-y-6">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white">
+                Find Your Perfect Ride with <span class="text-blue-600 dark:text-blue-400">MotoShop PH</span>
+            </h1>
+            <p class="text-gray-700 dark:text-gray-300 text-lg sm:text-xl">
+                Browse our catalog of motorcycles, accessories, and parts. Get expert reviews, secure checkout, and guidance to help you choose your dream motorcycle.
+            </p>
 
-                    <!-- Buttons -->
-                    <div class="mt-7 grid gap-3 w-full sm:inline-flex">
-                        <a class="py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                           href="/products">
-                            Shop Now
-                            <svg class="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                 stroke-linecap="round" stroke-linejoin="round">
-                                <path d="m9 18 6-6-6-6" />
-                            </svg>
-                        </a>
-
-                        <a class="py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                           href="/contact">
-                            Contact Support
-                        </a>
-                    </div>
-                    <!-- End Buttons -->
-
-                    <!-- Review -->
-                    <div class="mt-6 lg:mt-10 grid grid-cols-2 gap-x-5">
-                        <div class="py-5">
-                            <div class="flex space-x-1">
-                                <svg class="h-4 w-4 text-gray-800 dark:text-gray-200" ...></svg>
-                                <svg class="h-4 w-4 text-gray-800 dark:text-gray-200" ...></svg>
-                                <svg class="h-4 w-4 text-gray-800 dark:text-gray-200" ...></svg>
-                                <svg class="h-4 w-4 text-gray-800 dark:text-gray-200" ...></svg>
-                                <svg class="h-4 w-4 text-gray-800 dark:text-gray-200" ...></svg>
-                            </div>
-
-                            <p class="mt-3 text-sm text-gray-800 dark:text-gray-200">
-                                <span class="font-bold">4.6</span> /5 – Trusted by Filipino riders for quality and service
-                            </p>
-
-                            <div class="mt-5">
-                                <svg class="h-auto w-16 text-gray-800 dark:text-white" ...></svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right side image -->
-                <div class="relative ml-4">
-                    <!-- You can place your motorcycle illustration or image here -->
-                </div>
+            <!-- Buttons -->
+            <div class="flex flex-wrap gap-4 mt-6">
+                <a href="/products" class="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition">
+                    Shop Now &rarr;
+                </a>
+                <a href="/contact-support" class="px-6 py-3 bg-gray-800 text-white font-semibold rounded-lg shadow hover:bg-gray-700 transition">
+                    Contact Support
+                </a>
             </div>
-            <!-- End Grid -->
+
+            <!-- Ratings -->
+            <div class="flex items-center space-x-2 mt-4">
+                <div class="flex space-x-1 text-yellow-400">
+                    ★★★★★
+                </div>
+                <p class="text-gray-600 dark:text-gray-400 text-sm">4.6 / 5 – Trusted by Filipino riders</p>
+            </div>
+        </div>
+
+        <!-- Right Column: Features Text -->
+        <div class="space-y-6">
+            <div class="flex items-center space-x-3">
+                <span class="text-blue-600 text-xl">🏍️</span>
+                <p class="text-gray-800 dark:text-gray-300 font-medium">Explore Motorcycles</p>
+            </div>
+            <div class="flex items-center space-x-3">
+                <span class="text-green-500 text-xl">🛠️</span>
+                <p class="text-gray-800 dark:text-gray-300 font-medium">Accessories & Parts</p>
+            </div>
+            <div class="flex items-center space-x-3">
+                <span class="text-yellow-500 text-xl">💳</span>
+                <p class="text-gray-800 dark:text-gray-300 font-medium">Secure Checkout</p>
+            </div>
+            <div class="flex items-center space-x-3">
+                <span class="text-red-400 text-xl">⭐</span>
+                <p class="text-gray-800 dark:text-gray-300 font-medium">Expert Reviews</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Features -->
+    <div class="mt-16 grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-lg transition">
+            <h3 class="font-semibold text-lg text-gray-900 dark:text-white mb-2">Fast Delivery</h3>
+            <p class="text-gray-700 dark:text-gray-300 text-sm">Receive your motorcycle and accessories quickly and safely.</p>
+        </div>
+        <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-lg transition">
+            <h3 class="font-semibold text-lg text-gray-900 dark:text-white mb-2">Verified Products</h3>
+            <p class="text-gray-700 dark:text-gray-300 text-sm">All motorcycles and parts are quality-checked for your peace of mind.</p>
+        </div>
+        <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-lg transition">
+            <h3 class="font-semibold text-lg text-gray-900 dark:text-white mb-2">Customer Support</h3>
+            <p class="text-gray-700 dark:text-gray-300 text-sm">Our support team is ready to assist you 24/7 with any questions.</p>
         </div>
     </div>
 </div>

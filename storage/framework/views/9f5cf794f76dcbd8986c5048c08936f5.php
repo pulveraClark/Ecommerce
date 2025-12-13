@@ -52,4 +52,4 @@ if (isset($__slots)) unset($__slots);
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
-<?php /**PATH C:\Users\Administrator\Ecommerce\resources\views/components/layouts/app.blade.php ENDPATH**/ ?>
+    <?php /**PATH C:\Users\Administrator\Ecommerce\resources\views/components/layouts/app.blade.php ENDPATH**/ ?>

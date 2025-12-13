@@ -215,10 +215,37 @@ unset($__errorArgs, $__bag); ?><!--[if ENDBLOCK]><![endif]-->
 			<div class="md:col-span-12 lg:col-span-4 col-span-12">
 				<div class="bg-white rounded-xl shadow p-4 sm:p-7">
 					<div class="text-xl font-bold underline text-gray-700 mb-2">ORDER SUMMARY</div>
+
+					<div class="mb-4">
+						<label class="font-semibold text-gray-700">Select Discount Coupon</label>
+						<select wire:model="selected_coupon" class="w-full mt-1 p-2 border rounded-lg">
+							<option value="">No Coupon</option>
+							<!--[if BLOCK]><![endif]--><?php $__currentLoopData = $coupons; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $c): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+								<option value="<?php echo e($c['code']); ?>">
+									<?php echo e($c['code']); ?> – 
+									<!--[if BLOCK]><![endif]--><?php if($c['type'] == 'percent'): ?>
+										<?php echo e($c['value']); ?>% OFF
+									<?php else: ?>
+										- $<?php echo e($c['value']); ?>
+
+									<?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+								</option>
+							<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
+						</select>
+					</div>
+
 					<div class="flex justify-between mb-2 font-bold">
 						<span>Subtotal</span>
 						<span><?php echo e(Number::currency($grand_total, 'USD')); ?></span>
 					</div>
+
+					<!--[if BLOCK]><![endif]--><?php if($selected_coupon): ?>
+					<div class="flex justify-between mb-2 font-bold text-green-600">
+						<span>Discount (<?php echo e($selected_coupon); ?>)</span>
+						<span>-<?php echo e(Number::currency($discount_amount, 'USD')); ?></span>
+					</div>
+					<?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+
 					<div class="flex justify-between mb-2 font-bold">
 						<span>Taxes</span>
 						<span><?php echo e(Number::currency(0, 'USD')); ?></span>
@@ -228,9 +255,9 @@ unset($__errorArgs, $__bag); ?><!--[if ENDBLOCK]><![endif]-->
 						<span><?php echo e(Number::currency(0, 'USD')); ?></span>
 					</div>
 					<hr class="bg-slate-400 my-4 h-1 rounded">
-					<div class="flex justify-between mb-2 font-bold">
+					<div class="flex justify-between mb-2 font-bold text-lg">
 						<span>Grand Total</span>
-						<span><?php echo e(Number::currency($grand_total, 'USD')); ?></span>
+						<span><?php echo e(Number::currency($final_total, 'USD')); ?></span>
 					</div>
 				</div>
 

@@ -1,13 +1,33 @@
-<div class="w-full max-w-[85rem] py-10 px-4 sm:px-6 lg:px-8 mx-auto">
+<div class="w-full max-w-340 py-10 px-4 sm:px-6 lg:px-8 mx-auto">
   <section class="py-10 bg-gray-50 font-poppins rounded-lg">
     <div class="px-4 py-4 mx-auto max-w-7xl lg:py-6 md:px-6">
       <div class="flex flex-wrap mb-24 -mx-3">
+
+        <!-- Sidebar Filters -->
         <div class="w-full pr-2 lg:w-1/4 lg:block">
+
+          <!-- Search Bar with Button -->
+<div class="mb-6 flex flex-col sm:flex-row gap-2">
+    <input 
+        type="text" 
+        wire:model.defer="search" 
+        placeholder="Search products by name, brand..." 
+        class="flex-1 p-3 border rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-rose-600 focus:border-rose-600"
+    >
+    <div class="sm:w-36">
+        <button 
+            type="button" 
+            wire:click="$refresh" 
+            class="w-full p-3 bg-rose-600 text-blue-500 rounded-lg shadow-lg hover:bg-rose-700 hover:text-blue-200 text-lg font-semibold transition-all duration-200"
+        >
+            Search
+        </button>
+    </div>
+</div>
 
           <!-- Categories -->
           <div class="p-4 mb-5 bg-white border border-gray-200">
             <h2 class="text-2xl font-bold">Categories</h2>
-            {{ json_encode($selected_categories) }}
             <div class="w-16 pb-2 mb-6 border-b border-rose-600"></div>
             <ul>
               @foreach ($categories as $category)
@@ -70,10 +90,12 @@
               </div>
             </div>
           </div>
+
         </div>
 
         <!-- Products Grid -->
         <div class="w-full px-3 lg:w-3/4">
+
           <div class="px-3 mb-4">
             <div class="items-center justify-between hidden px-3 py-2 bg-gray-100 md:flex">
               <div class="flex items-center justify-between">
@@ -86,38 +108,55 @@
           </div>
 
           <div class="flex flex-wrap items-center">
-            @foreach ($products as $product)
-              <div class="w-full px-3 mb-6 sm:w-1/2 md:w-1/3" wire:key="{{ $product->id }}">
-                <div class="border border-gray-300">
-                  <div class="relative bg-gray-200">
-                    <a href="/products/{{ $product->slug }}">
-                      <img src="{{ url('storage', $product->images[0]) }}" alt="{{ $product->name }}" class="object-cover w-full h-56 mx-auto">
-                    </a>
-                  </div>
-                  <div class="p-3">
-                    <div class="flex items-center justify-between gap-2 mb-2">
-                      <h3 class="text-xl font-medium">{{ $product->name }}</h3>
+
+            @if($no_search_results)
+              <div class="w-full mb-6 p-6 bg-yellow-100 text-yellow-800 rounded-lg">
+                We don't have that product or brand.
+              </div>
+
+              <div class="w-full mb-4 text-lg font-bold">Other alternatives:</div>
+
+              @foreach ($alternative_products as $product)
+                <div class="w-full px-3 mb-6 sm:w-1/2 md:w-1/3" wire:key="{{ $product->id }}">
+                  <div class="border border-gray-300">
+                    <div class="relative bg-gray-200">
+                      <a href="/products/{{ $product->slug }}">
+                        <img src="{{ url('storage', $product->images[0] ?? '') }}" alt="{{ $product->name }}" class="object-cover w-full h-56 mx-auto">
+                      </a>
                     </div>
-                    <p class="text-lg text-green-600">{{ Number::currency($product->price, 'USD') }}</p>
-                  </div>
-                  <div class="flex justify-center p-4 border-t border-gray-300">
-                    <a wire:click.prevent='addToCart({{ $product->id }})' href="#" class="text-gray-500 flex items-center space-x-2 hover:text-red-500">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="w-4 h-4 bi bi-cart3" viewBox="0 0 16 16">
-                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
-                      </svg>
-                      <span wire:loading.remove wire:target='addToCart({{ $product->id }})'>Add to Cart</span>
-                      <span wire:loading wire:target='addToCart({{ $product->id }})'>Adding...</span>
-                    </a>
+                    <div class="p-3">
+                      <h3 class="text-xl font-medium">{{ $product->name }}</h3>
+                      <p class="text-lg text-green-600">{{ Number::currency($product->price, 'USD') }}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            @endforeach
+              @endforeach
+
+            @else
+              @foreach ($products as $product)
+                <div class="w-full px-3 mb-6 sm:w-1/2 md:w-1/3" wire:key="{{ $product->id }}">
+                  <div class="border border-gray-300">
+                    <div class="relative bg-gray-200">
+                      <a href="/products/{{ $product->slug }}">
+                        <img src="{{ url('storage', $product->images[0] ?? '') }}" alt="{{ $product->name }}" class="object-cover w-full h-56 mx-auto">
+                      </a>
+                    </div>
+                    <div class="p-3">
+                      <h3 class="text-xl font-medium">{{ $product->name }}</h3>
+                      <p class="text-lg text-green-600">{{ Number::currency($product->price, 'USD') }}</p>
+                    </div>
+                  </div>
+                </div>
+              @endforeach
+            @endif
+
           </div>
 
           <!-- Pagination -->
           <div class="flex justify-end mt-6">
             {{ $products->links() }}
           </div>
+
         </div>
 
       </div>

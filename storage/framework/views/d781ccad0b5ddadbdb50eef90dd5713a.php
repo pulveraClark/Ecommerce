@@ -4,7 +4,7 @@
       
       <!-- Brand & Mobile Toggle -->
       <div class="flex items-center justify-between">
-        <a class="flex-none text-xl font-semibold text-gray-900" href="/" aria-label="Brand">MotoFinder PH</a>
+        <a class="flex-none text-xl font-semibold text-gray-900" href="/" aria-label="Brand">MotoShop PH</a>
         <div class="md:hidden">
           <button type="button" class="hs-collapse-toggle flex justify-center items-center w-9 h-9 text-sm font-semibold rounded-lg border border-gray-200 text-gray-800 hover:bg-gray-100" data-hs-collapse="#navbar-collapse-with-animation" aria-controls="navbar-collapse-with-animation" aria-label="Toggle navigation">
             <svg class="hs-collapse-open:hidden flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">

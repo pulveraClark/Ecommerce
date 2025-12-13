@@ -110,10 +110,36 @@
 			<div class="md:col-span-12 lg:col-span-4 col-span-12">
 				<div class="bg-white rounded-xl shadow p-4 sm:p-7">
 					<div class="text-xl font-bold underline text-gray-700 mb-2">ORDER SUMMARY</div>
+
+					<div class="mb-4">
+						<label class="font-semibold text-gray-700">Select Discount Coupon</label>
+						<select wire:model="selected_coupon" class="w-full mt-1 p-2 border rounded-lg">
+							<option value="">No Coupon</option>
+							@foreach ($coupons as $c)
+								<option value="{{ $c['code'] }}">
+									{{ $c['code'] }} – 
+									@if($c['type'] == 'percent')
+										{{ $c['value'] }}% OFF
+									@else
+										- ${{ $c['value'] }}
+									@endif
+								</option>
+							@endforeach
+						</select>
+					</div>
+
 					<div class="flex justify-between mb-2 font-bold">
 						<span>Subtotal</span>
 						<span>{{ Number::currency($grand_total, 'USD') }}</span>
 					</div>
+
+					@if($selected_coupon)
+					<div class="flex justify-between mb-2 font-bold text-green-600">
+						<span>Discount ({{ $selected_coupon }})</span>
+						<span>-{{ Number::currency($discount_amount, 'USD') }}</span>
+					</div>
+					@endif
+
 					<div class="flex justify-between mb-2 font-bold">
 						<span>Taxes</span>
 						<span>{{ Number::currency(0, 'USD') }}</span>
@@ -123,9 +149,9 @@
 						<span>{{ Number::currency(0, 'USD') }}</span>
 					</div>
 					<hr class="bg-slate-400 my-4 h-1 rounded">
-					<div class="flex justify-between mb-2 font-bold">
+					<div class="flex justify-between mb-2 font-bold text-lg">
 						<span>Grand Total</span>
-						<span>{{ Number::currency($grand_total, 'USD') }}</span>
+						<span>{{ Number::currency($final_total, 'USD') }}</span>
 					</div>
 				</div>
 
